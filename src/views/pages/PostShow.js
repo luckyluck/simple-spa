@@ -8,10 +8,8 @@ const PostShow = {
 
         return `
             <section>
-                <h1>Post Id: ${post.id}</h1>
-                <p>Post Title: ${post.title}</p>
-                <p>Post Content: ${post.content}</p>
-                <p>Post Author: ${post.name}</p>
+                <h1>${post.title}</h1>
+                <article>${post.text.map(p => `<p>${p}</p>`)}</article>
             </section>
         `;
     },

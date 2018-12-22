@@ -6,7 +6,7 @@ export const getPostsList = async () => {
         }
     };
     try {
-        const response = await fetch(`https://5bb634f6695f8d001496c082.mockapi.io/api/posts`, options);
+        const response = await fetch(`https://5c1e3870bc26950013fbcb1f.mockapi.io/articles`, options);
 
         return await response.json();
     } catch (error) {
@@ -23,7 +23,7 @@ export const getPost = async id => {
     };
 
     try {
-        const response = await fetch(`https://5bb634f6695f8d001496c082.mockapi.io/api/posts/` + id, options);
+        const response = await fetch(`https://5c1e3870bc26950013fbcb1f.mockapi.io/articles/${id}`, options);
 
         return await response.json();
     } catch (error) {

@@ -12,9 +12,9 @@ import Footer from '../views/components/Footer.js';
 const router = async routes => {
 
     // Lazy load view element
-    const header = document.querySelector('.header-container');
+    const header = document.querySelector('.header');
     const content = document.getElementById('root');
-    const footer = document.querySelector('.footer-container');
+    const footer = document.querySelector('.footer');
 
     // Render the header and the footer of the page
     header.innerHTML = await Menu.render();
