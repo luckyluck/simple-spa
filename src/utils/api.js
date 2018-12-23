@@ -1,4 +1,4 @@
-export const getPostsList = async () => {
+export const getArticles = async () => {
     const options = {
         method: 'GET',
         headers: {
@@ -14,7 +14,7 @@ export const getPostsList = async () => {
     }
 };
 
-export const getPost = async id => {
+export const getArticle = async id => {
     const options = {
         method: 'GET',
         headers: {
@@ -29,4 +29,8 @@ export const getPost = async id => {
     } catch (error) {
         console.log('Error getting documents', error);
     }
+};
+
+export const prepareArticle = text => {
+    return text.map(p => `<p>${p}</p>`).join('');
 };

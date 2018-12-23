@@ -1,16 +1,16 @@
-import { getPostsList } from '../../utils/api.js';
+import { getArticles } from '../../utils/api.js';
 
 const Home = {
     render: async () => {
-        let posts = await getPostsList();
+        let articles = await getArticles();
 
         return `
             <section>
                 <h1>Home</h1>
                 <ul>
-                    ${posts.map(post => 
-                        `<li><a href="#/p/${post.id}">${post.title}</a></li>`
-                    )}
+                    ${articles.map(article => 
+                        `<li><a href="#/article/${article.id}">${article.title}</a></li>`
+                    ).join('')}
                 </ul>
             </section>
         `;
