@@ -5,6 +5,8 @@ import About from './views/pages/About.js';
 import Article from './views/pages/Article.js';
 import Error404 from './views/pages/Error404.js';
 
+import Menu from './views/components/Menu.js';
+
 // List of supported routes. Any url other than these routes will throw a 404 error
 const routes = {
     '/': Home,
@@ -12,6 +14,12 @@ const routes = {
     '/article/:id': Article,
     '*': Error404
 };
+
+// Lazy load view element
+const header = document.querySelector('.header');
+// Render the header and the footer of the page
+header.innerHTML = Menu.render();
+Menu.afterRender();
 
 const router = new Router(routes, document.getElementById('root'));
 router.init();

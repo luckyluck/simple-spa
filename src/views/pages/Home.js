@@ -7,9 +7,12 @@ const Home = {
         return `
             <section>
                 <h1>Home</h1>
-                <ul>
+                <ul class="articles">
                     ${articles.map(article => 
-                        `<li><a href="#/article/${article.id}">${article.title}</a></li>`
+                        `<li>
+                            <a href="#/article/${article.id}">${article.title}</a>
+                            <small>${new Date(article.createdAt).toLocaleDateString()}</small>
+                        </li>`
                     ).join('')}
                 </ul>
             </section>
