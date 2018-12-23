@@ -1,3 +1,7 @@
+/**
+ * Requesting whole list of articles
+ * @returns {Promise<any>}
+ */
 export const getArticles = async () => {
     const options = {
         method: 'GET',
@@ -14,6 +18,11 @@ export const getArticles = async () => {
     }
 };
 
+/**
+ * Requesting article by given ID
+ * @param id
+ * @returns {Promise<any>}
+ */
 export const getArticle = async id => {
     const options = {
         method: 'GET',
@@ -29,8 +38,4 @@ export const getArticle = async id => {
     } catch (error) {
         console.log('Error getting documents', error);
     }
-};
-
-export const prepareArticle = text => {
-    return text.map(p => `<p>${p}</p>`).join('');
 };

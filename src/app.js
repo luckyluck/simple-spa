@@ -15,11 +15,14 @@ const routes = {
     '*': Error404
 };
 
+// TODO improve initialization not to have menu code hear
 // Lazy load view element
 const header = document.querySelector('.header');
-// Render the header and the footer of the page
+// Render the header of the page
 header.innerHTML = Menu.render();
 Menu.afterRender();
 
+// Creating Router instance giving it list of routes and the Root
 const router = new Router(routes, document.getElementById('root'));
+// And initiating instance
 router.init();

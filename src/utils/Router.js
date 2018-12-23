@@ -13,6 +13,10 @@ class Router {
         this.root = root;
     }
 
+    /**
+     * Setting important for Router listeners
+     * Once on load and every time on hash change Router will re-render the page with new content
+     */
     init() {
         // Listen on hash change
         window.addEventListener('hashchange', () => this.update());
@@ -20,6 +24,14 @@ class Router {
         window.addEventListener('load', () => this.update());
     }
 
+    /**
+     * Main function:
+     * - parses URL
+     * - prepares URL to compare with the list of supported routes
+     * - sets new content into the Root
+     * - initiates JS of the rendered page after it was rendered
+     * @returns {Promise<void>} - async for the sake of inner functions
+     */
     async update() {
         // Get the parsed URI from the address bar
         let { resource, id, verb } = parseRequestURL();

@@ -18,10 +18,51 @@ export const parseRequestURL = () => {
 };
 
 /**
- * Simple sleep implementation
- * @param ms
- * @returns {Promise<any>}
+ * Check if given element is in viewport
+ * @param el
+ * @returns {boolean}
  */
-export const sleep = ms => {
-    return new Promise(resolve => setTimeout(resolve, ms));
+export const isElementInViewport = el => {
+    const rect = el.getBoundingClientRect();
+    const half = Math.floor(rect.height / 2);
+    const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+
+    return !((rect.top + half) >= windowHeight || (rect.top < 0 && Math.abs(rect.top) >= half && Math.abs(rect.top) < rect.height));
+};
+
+/**
+ * Custom throttle function implementation
+ * @param fn - a callback
+ * @param wait - time to sleep
+ * @returns {Function}
+ */
+export const throttle = (fn, wait) => {
+    let time = Date.now();
+
+    return () => {
+        if ((time + wait - Date.now()) < 0) {
+            fn();
+            time = Date.now();
+        }
+    };
+};
+
+/**
+ * Preparing article:
+ * - array of paragraphs wrapping with a <p></p> tag
+ * - addind video content in the middle
+ * @param text - array of strings/paragraphs
+ * @returns {string} - prepared string to be put as HTML
+ */
+export const prepareArticle = text => {
+    const video = `
+        <video class="adv-video" width="100%" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"></video>
+    `;
+    const result = text.map(p => `<p>${p}</p>`);
+    // Calculating a middle of an array
+    const m = Math.ceil(text.length / 2);
+    // And inserting video to show to a user
+    result.splice(m, 0, video);
+
+    return result.join('');
 };

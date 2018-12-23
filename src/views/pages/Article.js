@@ -1,5 +1,5 @@
-import { parseRequestURL } from '../../utils/utils.js';
-import { getArticle, prepareArticle } from '../../utils/api.js';
+import { parseRequestURL, prepareArticle, isElementInViewport, throttle } from '../../utils/utils.js';
+import { getArticle,  } from '../../utils/api.js';
 
 const Article = {
     render: async () => {
@@ -14,7 +14,19 @@ const Article = {
             </section>
         `;
     },
-    afterRender: async () => {}
+    afterRender: async () => {
+        const video = document.querySelector('.adv-video');
+        // Adding listener to be able to play/pause video automatically
+        document.addEventListener('scroll', throttle(() => {
+            const inViewport = isElementInViewport(video);
+
+            if (inViewport && video.paused) {
+                video.play();
+            } else if (!inViewport && !video.paused) {
+                video.pause();
+            }
+        }, 100));
+    }
 };
 
 export default Article;
