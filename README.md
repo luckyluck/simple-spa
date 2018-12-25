@@ -6,18 +6,12 @@ Simple dependency-free SPA in ES6 vanilla JavaScript.
 * ES6+ JavaScript
 * HTML
 * CSS
+* Webpack 4 + Babel 7
 
-To be able to use `ES6 modules` without **Babel** in modern browsers I just set the type like this:
-```javascript
-<script type="module" src="./app.js"></script>
-```
-
-### How to launch
-As an example, you can use [http-server](https://www.npmjs.com/package/http-server). After you install it, 
-go to the `src` root and call:
-```text
-http-server ./
-```
-and after that you can open the project in the browser via [http://localhost:8080/](http://localhost:8080/) (Port 8080 is chosen by default but in your case it can be different).
-
-Beware, as I do not use any tool to bundle the project, it works only in modern browsers. I checked it in the latest Chrome, Opera and Firefox browsers.
+### Commands
+* `npm i` - will install all project dependencies
+* `npm run start` - launch the project in a dev mode
+* `npm run build` - build the project for production
+* `npm run serve` - launch built project
+* `npm run test` - invoke all the tests once
+* `npm run test:watch` - invoke all the tests and will watch for changes
