@@ -7,7 +7,6 @@ module.exports = {
     mode: 'none',
     context: path.resolve(__dirname, 'src'),
     entry: {
-        polyfill: 'babel-polyfill',
         app: './app.js'
     },
     output: {
@@ -43,10 +42,7 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /(node_modules|\.test\.js$)/,
                 use: [{
-                    loader: 'babel-loader',
-                    query: {
-                        presets: ['@babel/preset-env']
-                    }
+                    loader: 'babel-loader'
                 }, 'strip-loader?strip[]=debugger,strip[]=debug,strip[]=console.log']
             }
 
