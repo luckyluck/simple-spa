@@ -55,9 +55,7 @@ export const throttle = (fn, wait) => {
  * @returns {string} - prepared string to be put as HTML
  */
 export const prepareArticle = text => {
-    const video = `
-        <video class="adv-video" width="100%" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"></video>
-    `;
+    const video = '<video class="adv-video" width="100%" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"></video>';
     const result = text.map(p => `<p>${p}</p>`);
     // Calculating a middle of an array
     const m = Math.ceil(text.length / 2);
