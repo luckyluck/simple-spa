@@ -1,5 +1,5 @@
-import { parseRequestURL, prepareArticle, isElementInViewport, throttle } from '../../utils/utils.js';
-import { getArticle,  } from '../../utils/api.js';
+import { parseRequestURL, prepareArticle, isElementInViewport, throttle } from '../../utils/utils';
+import { getArticle,  } from '../../utils/api';
 
 const Article = {
     render: async () => {

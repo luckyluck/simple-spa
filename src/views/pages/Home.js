@@ -1,4 +1,4 @@
-import { getArticles } from '../../utils/api.js';
+import { getArticles } from '../../utils/api';
 
 const Home = {
     render: async () => {

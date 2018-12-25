@@ -1,4 +1,4 @@
-import { parseRequestURL } from './utils.js';
+import { parseRequestURL } from './utils';
 
 /**
  * Router
