@@ -18,8 +18,8 @@ export const parseRequestURL = () => {
 };
 
 /**
- * Check if given element is in viewport
- * @param el
+ * Check if at least a half of the given element is in a viewport
+ * @param el - element to check
  * @returns {boolean}
  */
 export const isElementInViewport = el => {
@@ -27,7 +27,7 @@ export const isElementInViewport = el => {
     const half = Math.floor(rect.height / 2);
     const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
 
-    return !((rect.top + half) >= windowHeight || (rect.top < 0 && Math.abs(rect.top) >= half && Math.abs(rect.top) < rect.height));
+    return (rect.top > 0 && (rect.top + half) <= windowHeight) || (rect.top <= 0 && rect.top + half >= 0);
 };
 
 /**
@@ -55,7 +55,7 @@ export const throttle = (fn, wait) => {
  * @returns {string} - prepared string to be put as HTML
  */
 export const prepareArticle = text => {
-    const video = '<video class="adv-video" width="100%" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"></video>';
+    const video = '<video class="adv-video" width="100%" src="../../public/Forest_15_3b_Videvo.mov47209.mp4"></video>';
     const result = text.map(p => `<p>${p}</p>`);
     // Calculating a middle of an array
     const m = Math.ceil(text.length / 2);

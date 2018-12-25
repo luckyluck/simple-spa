@@ -15,17 +15,70 @@ const Article = {
         `;
     },
     afterRender: async () => {
-        const video = document.querySelector('.adv-video');
-        // Adding listener to be able to play/pause video automatically
-        document.addEventListener('scroll', throttle(() => {
-            const inViewport = isElementInViewport(video);
+        const advVideo = document.querySelector('.adv-video');
+        // Initially turning of a volume mot to annoy a user
+        advVideo.volume = 0;
+        // A least of important check points
+        const checkPoints = [25, 50, 75, 100];
+        // Flag to indicate if standard message was shown or not
+        // Because we want to show the message only once
+        let isStandardShowed = false;
+        // Interval ID to be able to manipulate it if there is one
+        let intervalId;
 
-            if (inViewport && video.paused) {
-                video.play();
-            } else if (!inViewport && !video.paused) {
-                video.pause();
+        const onPageScroll = () => {
+            const inViewport = isElementInViewport(advVideo);
+            // We will not start the video again if the user watched it
+            if (inViewport && advVideo.paused && advVideo.currentTime !== advVideo.duration) {
+                advVideo.play();
+            } else if (!inViewport && !advVideo.paused) {
+                advVideo.pause();
             }
-        }, 100));
+        };
+
+        const onVideoPlay = () => {
+            console.log('the video has started');
+            intervalId = setInterval(() => {
+                if (!isStandardShowed) {
+                    console.log('Ad has been displayed for at least 2 sec in a row');
+                    isStandardShowed = true;
+                }
+            }, 2000);
+        };
+
+        const onVideoPause = () => {
+            clearInterval(intervalId);
+            console.log('the video paused');
+        };
+
+        const onVideoProgress = () => {
+            const percent = Math.floor(advVideo.currentTime / advVideo.duration * 100);
+            // Writing to the console if the video goes through a check point
+            if (percent >= checkPoints[0]) {
+                const point = checkPoints.shift();
+                console.log(`The video has played through ${point}%`);
+                // We do not want to show message after the video has stopped
+                if (point === 100) {
+                    clearInterval(intervalId);
+                }
+            }
+        };
+
+        // Adding scroll listener for video manipulations
+        document.addEventListener('scroll', throttle(onPageScroll, 100));
+        // Adding on play/pause listeners for additional action logic
+        advVideo.addEventListener('play', onVideoPlay);
+        advVideo.addEventListener('pause', onVideoPause);
+        // Adding video progress listener
+        advVideo.addEventListener('timeupdate', onVideoProgress);
+
+        // Adding listener to toggle volume on click on the video
+        // advVideo.addEventListener('click', () => {
+        //     // User can toggle video's volume
+        //     if (!advVideo.paused) {
+        //         advVideo.volume = advVideo.volume === 1 ? 0 : 1;
+        //     }
+        // });
     }
 };
 

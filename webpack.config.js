@@ -43,7 +43,7 @@ module.exports = {
                 exclude: /(node_modules|\.test\.js$)/,
                 use: [{
                     loader: 'babel-loader'
-                }, 'strip-loader?strip[]=debugger,strip[]=debug,strip[]=console.log']
+                }]
             }
 
         ]

@@ -16,7 +16,7 @@ describe('Utils functions', () => {
     });
 
     test('prepareArticle', () => {
-        const video = '<video class="adv-video" width="100%" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"></video>';
+        const video = '<video class="adv-video" width="100%" src="../../public/Forest_15_3b_Videvo.mov47209.mp4"></video>';
         const text = ['text 1', 'text 2', 'text 3'];
         const preparedText = prepareArticle(text);
 
